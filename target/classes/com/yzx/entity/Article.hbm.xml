@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2016-12-10 16:00:36 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.yzx.entity.Article" table="article" catalog="myworld">
+        <id name="articleId" type="string">
+            <column name="article_id" length="32" />
+            <generator class="assigned" />
+        </id>
+        <property name="category" type="string">
+            <column name="category" length="32" not-null="true" />
+        </property>
+        <property name="articleTitle" type="string">
+            <column name="article_title" not-null="true" />
+        </property>
+        <property name="articleStatus" type="int">
+            <column name="article_status" not-null="true" />
+        </property>
+        <property name="genTime" type="int">
+            <column name="gen_time" not-null="true" />
+        </property>
+        <property name="articleDescription" type="string">
+            <column name="article_description" />
+        </property>
+    </class>
+</hibernate-mapping>
