@@ -1,4 +1,4 @@
-package com.test;
+package com.test.resource;
 
 import org.apache.log4j.Logger;
 import org.glassfish.grizzly.http.server.HttpServer;
@@ -23,7 +23,7 @@ public class Main {
     public static HttpServer startServer() {
         // create a resource config that scans for JAX-RS resources and providers
         // in com.example package
-        final ResourceConfig rc = new ResourceConfig().packages("com.yzx");
+        final ResourceConfig rc = new ResourceConfig().packages("com.yzx.resource");
 
         // create and start a new instance of grizzly http server
         // exposing the Jersey application at BASE_URI

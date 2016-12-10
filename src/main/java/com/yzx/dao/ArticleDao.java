@@ -1,5 +1,14 @@
 package com.yzx.dao;
 
-public interface ArticleDao {
+import java.util.List;
 
+import com.yzx.entity.Article;
+
+public interface ArticleDao {
+	public int insertArticle(Article Article);
+	public int updateArticle(Article Article);
+	public int deleteArticle(Article Article);
+	public Article findArticleById(String ArticleId);
+	public List<Article> findAllArticle();
+	public void setArticleDao(ArticleDao articleDao);
 }

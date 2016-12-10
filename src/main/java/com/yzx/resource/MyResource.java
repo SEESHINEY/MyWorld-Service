@@ -1,4 +1,4 @@
-package com.yzx;
+package com.yzx.resource;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
