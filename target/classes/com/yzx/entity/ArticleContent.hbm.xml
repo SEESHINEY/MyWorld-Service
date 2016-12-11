@@ -1,13 +1,16 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<!-- Generated 2016-12-10 22:32:57 by Hibernate Tools 3.4.0.CR1 -->
+<!-- Generated 2016-12-11 21:53:09 by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
     <class name="com.yzx.entity.ArticleContent" table="article_content" catalog="myworld">
         <id name="articleId" type="string">
             <column name="article_id" length="32" />
-            <generator class="assigned" />
+            <generator class="foreign">
+                <param name="property">article</param>
+            </generator>
         </id>
+        <one-to-one name="article" class="com.yzx.entity.Article" constrained="true"></one-to-one>
         <property name="articleContent" type="string">
             <column name="article_content" length="65535" />
         </property>

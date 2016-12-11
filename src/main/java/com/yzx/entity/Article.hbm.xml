@@ -1,16 +1,16 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<!-- Generated 2016-12-10 22:32:57 by Hibernate Tools 3.4.0.CR1 -->
+<!-- Generated 2016-12-11 21:53:09 by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
     <class name="com.yzx.entity.Article" table="article" catalog="myworld">
         <id name="articleId" type="string">
             <column name="article_id" length="32" />
             <generator class="assigned" />
         </id>
-        <property name="category" type="string">
+        <many-to-one name="articleCategory" class="com.yzx.entity.ArticleCategory" fetch="select">
             <column name="category" length="32" not-null="true" />
-        </property>
+        </many-to-one>
         <property name="articleTitle" type="string">
             <column name="article_title" not-null="true" />
         </property>
@@ -23,5 +23,6 @@
         <property name="articleDescription" type="string">
             <column name="article_description" />
         </property>
+        <one-to-one name="articleContent" class="com.yzx.entity.ArticleContent"></one-to-one>
     </class>
 </hibernate-mapping>

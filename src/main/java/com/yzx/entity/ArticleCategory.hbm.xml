@@ -1,16 +1,16 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<!-- Generated 2016-12-10 22:32:57 by Hibernate Tools 3.4.0.CR1 -->
+<!-- Generated 2016-12-11 21:53:09 by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
     <class name="com.yzx.entity.ArticleCategory" table="article_category" catalog="myworld">
-        <id name="PId" type="string">
-            <column name="p_id" length="32" />
+        <id name="categoryId" type="string">
+            <column name="category_id" length="32" />
             <generator class="assigned" />
         </id>
-        <property name="categoryId" type="string">
-            <column name="category_id" length="32" not-null="true" />
-        </property>
+        <many-to-one name="articleCategory" class="com.yzx.entity.ArticleCategory" fetch="select">
+            <column name="p_id" length="32" not-null="true" />
+        </many-to-one>
         <property name="categoryName" type="string">
             <column name="category_name" length="40" not-null="true" />
         </property>
@@ -20,5 +20,17 @@
         <property name="articleNode" type="byte">
             <column name="article_node" not-null="true" />
         </property>
+        <set name="articles" table="article" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="category" length="32" not-null="true" />
+            </key>
+            <one-to-many class="com.yzx.entity.Article" />
+        </set>
+        <set name="articleCategories" table="article_category" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="p_id" length="32" not-null="true" />
+            </key>
+            <one-to-many class="com.yzx.entity.ArticleCategory" />
+        </set>
     </class>
 </hibernate-mapping>

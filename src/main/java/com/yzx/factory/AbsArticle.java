@@ -5,10 +5,6 @@ public interface AbsArticle {
 
 	public void setArticleId(String articleId);
 
-	public String getCategory();
-
-	public void setCategory(String category);
-
 	public String getArticleTitle();
 
 	public void setArticleTitle(String articleTitle);
@@ -24,8 +20,12 @@ public interface AbsArticle {
 	public String getArticleDescription();
 
 	public void setArticleDescription(String articleDescription);
-	
-	public AbsArticleCategory getArticleCategory();
-	
-	public AbsArticleContent getArticleContent();
+
+	public AbsArticleCategory getAbsArticleCategory();
+
+	public void setAbsArticleCategory(AbsArticleCategory articleCategory);
+
+	public AbsArticleContent getAbsArticleContent();
+
+	public void setAbsArticleContent(AbsArticleContent articleContent);
 }
