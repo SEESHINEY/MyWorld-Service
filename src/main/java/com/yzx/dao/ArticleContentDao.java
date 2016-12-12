@@ -10,5 +10,4 @@ public interface ArticleContentDao {
 	public int deleteArticleContent(ArticleContent articleContent);
 	public ArticleContent findArticleContentById(String articleContentId);
 	public List<ArticleContent> findAllArticleContent();
-	public void setArticleContentDao(ArticleContentDao articleContentDao);
 }

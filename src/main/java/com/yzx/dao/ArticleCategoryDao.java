@@ -10,5 +10,4 @@ public interface ArticleCategoryDao {
 	public int deleteArticleCategory(ArticleCategory ArticleCategory);
 	public ArticleCategory findArticleCategoryById(String ArticleCategoryId);
 	public List<ArticleCategory> findAllArticleCategory();
-	public void setArticleCategoryDao(ArticleCategoryDao articleCategoryDao);
 }

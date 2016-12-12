@@ -10,5 +10,4 @@ public interface ArticleDao {
 	public int deleteArticle(Article Article);
 	public Article findArticleById(String ArticleId);
 	public List<Article> findAllArticle();
-	public void setArticleDao(ArticleDao articleDao);
 }

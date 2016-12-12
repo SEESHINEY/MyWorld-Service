@@ -5,9 +5,8 @@ import java.util.Set;
 
 import com.yzx.entity.Article;
 import com.yzx.entity.ArticleCategory;
-import com.yzx.factory.AbsArticle;
-import com.yzx.factory.AbsArticleCategory;
-import com.yzx.factory.AbsArticleContent;
+import com.yzx.entity.ArticleContent;
+
 import com.yzx.factory.ArticleFactory;
 import com.yzx.identifier.ArticleType;
 import com.yzx.identifier.ID;
@@ -17,39 +16,44 @@ import com.yzx.identifier.impl.ArticleIDFactory;
 
 public class ArticleFactoryImpl implements ArticleFactory {
 	private ID articleId;
+	private ArticleCategory articleCategory;
+	private Article article;
+	private ArticleContent articleContent;
 
 	@Override
-	public AbsArticle createAbsArticle() {
+	public Article createArticle() {
 		IDFactory idFactory = new ArticleIDFactory();
 		articleId = idFactory.createId();
-		AbsArticle article = new ArticleAdaptor();
+		article = new Article();
 		article.setArticleId(articleId.getId());
 		article.setArticleStatus(ArticleType.VALIDATING);
 		article.setArticleTitle("Jersey之@GET");
+		article.setArticleCategory(articleCategory);
 		article.setGenTime(Integer.valueOf(articleId.getTime()));
-		article.setAbsArticleContent(createAbsAbsArticleContent());
+		article.setArticleContent(createArticleContent());
 		return article;
 	}
 
 	@Override
-	public AbsArticleContent createAbsAbsArticleContent() {
-		AbsArticleContent articleContent = new ArticleContentAdaptor();
-		articleContent.setArticleId(articleId.getId());
+	public ArticleContent createArticleContent() {
+		articleContent = new ArticleContent();
+		articleContent.setArticle(article);
+		articleContent.setArticleId(article.getArticleId());
 		articleContent.setArticleContent("关于Jersey的扒拉扒拉扒拉");
 		return articleContent;
 	}
 
 	@Override
-	public AbsArticleCategory createAbsAbsArticleCategeory() {
+	public ArticleCategory createArticleCategeory() {
 		byte b = 0;
 		IDFactory idFactory = new ArticleCategoryIDFactory();
 		ID categoryId = idFactory.createId();
-		AbsArticleCategory articleCategory = new ArticleCategoryAdaptor();
-		AbsArticle article = createAbsArticle();
+		articleCategory = new ArticleCategory();
+		Article article = createArticle();
 		Set<Article> articles = new HashSet<>();
 		articleCategory.setCategoryId(categoryId.getId());
 		articleCategory
-				.setArticleCategory((ArticleCategory) createAbsAbsTopArticleCategeory());
+				.setArticleCategory((ArticleCategory) createTopArticleCategeory());
 		articleCategory.setCategoryName("IT学习");// For Test,创建不同名称的目录
 		articleCategory.setCategoryDesc("IT学习经验分享板块");
 		articleCategory.setArticleNode(b);
@@ -59,15 +63,16 @@ public class ArticleFactoryImpl implements ArticleFactory {
 	}
 
 	@Override
-	public AbsArticleCategory createAbsAbsTopArticleCategeory() {
+	public ArticleCategory createTopArticleCategeory() {
 		byte b = 0;
 		IDFactory idFactory = new ArticleCategoryIDFactory();
 		ID categoryId = idFactory.createId();
-		AbsArticleCategory articleCategory = new ArticleCategoryAdaptor();
+		articleCategory = new ArticleCategory();
 		articleCategory.setCategoryId(categoryId.getId());
 		articleCategory.setCategoryName("学习");// For Test,创建不同名称的目录
 		articleCategory.setCategoryDesc("学习经验分享板块");
 		articleCategory.setArticleNode(b);
+		articleCategory.setArticleCategory(articleCategory);
 		return articleCategory;
 	}
 

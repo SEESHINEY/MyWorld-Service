@@ -4,12 +4,9 @@ package com.yzx.entity;
 import java.util.HashSet;
 import java.util.Set;
 
-import javax.ws.rs.Produces;
-import javax.ws.rs.core.MediaType;
 import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
-@Produces({MediaType.APPLICATION_JSON,MediaType.APPLICATION_XML})
 public class ArticleCategory implements java.io.Serializable {
 
 	private String categoryId;

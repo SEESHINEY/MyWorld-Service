@@ -13,6 +13,7 @@ import com.yzx.dao.impl.ArticleCategoryDaoImpl;
 import com.yzx.entity.ArticleCategory;
 import com.yzx.factory.ArticleFactory;
 import com.yzx.factory.impl.ArticleFactoryImpl;
+import com.yzx.util.HUtil;
 
 @Path("articleCategory")
 @XmlRootElement
@@ -21,21 +22,19 @@ import com.yzx.factory.impl.ArticleFactoryImpl;
 public class ArticleCategoryRs {
 	private ArticleCategoryDao articleCategoryDao;
 	private ArticleCategory articleCategory;
-	private String categoryName;
 	public ArticleCategoryRs() {
 		super();
-		articleCategoryDao = new ArticleCategoryDaoImpl();
+		articleCategoryDao = new ArticleCategoryDaoImpl(HUtil.getSessionFactory());
 		ArticleFactory articleFactory = new ArticleFactoryImpl();
 		articleCategory = (ArticleCategory) articleFactory
-				.createAbsAbsArticleCategeory();
+				.createArticleCategeory();
 	}
 
 	@GET
-	@Produces({MediaType.APPLICATION_JSON,MediaType.APPLICATION_XML})
 	public ArticleCategory getCategories(){
 		return articleCategory;
 	}
-	
+	@GET
 	@Path("/{name}")
 	public ArticleCategory getCategories(@PathParam("name")String name){
 		return articleCategory;
